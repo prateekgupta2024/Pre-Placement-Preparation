@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<vector<int>> nw;
+        sort(intervals.begin(),intervals.end());
+        int n=intervals.size();
+        int ub=intervals[0][1],lb=intervals[0][0];
+        for(int i=1;i<n;i++)
+        {
+            if(ub>=intervals[i][0] && ub<=intervals[i][1])
+            {
+                ub=intervals[i][1];
+            }
+             else if(ub>=intervals[i][0] && ub>=intervals[i][1])
+             {
+             }
+             else
+             {
+                 vector<int> v;
+                v.push_back(lb);
+                v.push_back(ub);
+                nw.push_back(v);
+                 ub=intervals[i][1];
+                 lb=intervals[i][0];
+             }
+            
+            
+        }
+        vector<int> v;
+        v.push_back(lb);
+        v.push_back(ub);
+        nw.push_back(v);
+        return nw;
+    }
+};
